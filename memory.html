@@ -369,6 +369,55 @@
                 margin-right: auto;
             }
         }
+
+        /* ===== Fix: ให้เลื่อนได้บนมือถือ และใช้ svh แทน d**vh ===== */
+        @supports (padding: max(0px)) {
+
+            /* ใช้ 100svh เพื่อคำนวณรวมแถบ address bar แบบใหม่ของมือถือ */
+            body {
+                min-height: 100svh;
+            }
+        }
+
+        /* มือถือทั้งหมด (≤ 480px): ยกเลิกการจัดกลางแนวตั้ง แล้วอนุญาตให้เลื่อน */
+        @media (max-width: 480px) {
+
+            html,
+            body {
+                height: auto;
+            }
+
+            /* ไม่ล็อกความสูงเอกสาร */
+            body {
+                min-height: auto;
+                justify-content: flex-start;
+                /* ไม่จัดกลางแนวตั้ง เพื่อให้เนื้อหาต่อบนล่างได้ */
+                overflow-y: auto;
+                /* เปิดสกรอลล์แนวตั้ง */
+                -webkit-overflow-scrolling: touch;
+                /* ลื่นบน iOS */
+                padding-top: 16px;
+                padding-bottom: max(20px, env(safe-area-inset-bottom));
+                /* กันชนล่าง */
+                gap: 12px;
+                /* ลด gap นิดนึงบนจอเล็ก */
+            }
+        }
+
+        /* จอเตี้ยแนวนอน: บังคับให้เลื่อนได้เหมือนกัน */
+        @media (orientation: landscape) and (max-height: 420px) {
+
+            html,
+            body {
+                height: auto;
+            }
+
+            body {
+                min-height: auto;
+                justify-content: flex-start;
+                overflow-y: auto;
+            }
+        }
     </style>
 </head>
 
