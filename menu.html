@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOVE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ตัวครอบทั้งหมด */
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* หัวข้อ */
+        .title {
+            font-size: 28px;
+            color: #5C3A42;
+            margin-bottom: 40px;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6);
+        }
+
+        /* เมนู */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .menu-item {
+            background: #E86C8D;
+            color: white;
+            padding: 40px 30px;
+            border-radius: 35px;
+            width: 210px;
+            height: 210px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 10px 25px rgba(232, 108, 141, 0.35);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 16px 35px rgba(232, 108, 141, 0.45);
+        }
+
+        .menu-item img {
+            width: 85px;
+            height: 85px;
+            margin-bottom: 14px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .menu-item p {
+            color: #fff;
+            font-size: 18px;
+            line-height: 1.4;
+        }
+
+
+
+
+
+        /* กันติ่งขอบจอ + ระยะปลอดภัย */
+        @supports (padding: max(0px)) {
+            body {
+                min-height: 100dvh;
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+                padding-top: max(24px, env(safe-area-inset-top));
+                padding-bottom: max(24px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ---------- โทรศัพท์เล็กมาก (≤ 360px) ---------- */
+        @media (max-width: 360px) {
+            .title {
+                font-size: 20px;
+                margin-bottom: 18px;
+            }
+
+            .menu-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+
+            .menu-item {
+                width: 140px;
+                height: 140px;
+                padding: 18px 14px;
+                border-radius: 22px;
+                box-shadow: 0 8px 20px rgba(232, 108, 141, .32);
+            }
+
+            .menu-item img {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 8px;
+            }
+
+            .menu-item p {
+                font-size: 14px;
+                line-height: 1.35;
+            }
+        }
+
+        /* ---------- โทรศัพท์ทั่วไป (361–480px) ---------- */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .title {
+                font-size: 22px;
+                margin-bottom: 22px;
+            }
+
+            .menu-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px;
+            }
+
+            .menu-item {
+                width: 160px;
+                height: 160px;
+                padding: 22px 16px;
+                border-radius: 24px;
+            }
+
+            .menu-item img {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 10px;
+            }
+
+            .menu-item p {
+                font-size: 15px;
+            }
+        }
+
+        /* ---------- มือถือจอใหญ่ / Phablet (481–599px) ---------- */
+        @media (min-width: 481px) and (max-width: 599px) {
+            .title {
+                font-size: 24px;
+                margin-bottom: 26px;
+            }
+
+            .menu-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 22px;
+            }
+
+            .menu-item {
+                width: 180px;
+                height: 180px;
+                padding: 26px 18px;
+                border-radius: 26px;
+            }
+
+            .menu-item img {
+                width: 70px;
+                height: 70px;
+                margin-bottom: 12px;
+            }
+
+            .menu-item p {
+                font-size: 16px;
+            }
+        }
+
+        /* ---------- iPad / Tablet (600–1024px) ---------- */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .menu-container {
+                grid-template-columns: repeat(2, 1fr);
+                /* ← เปลี่ยนจาก 3 เป็น 2 */
+                gap: 28px;
+            }
+
+            .menu-item {
+                width: 200px;
+                height: 200px;
+                padding: 28px 20px;
+                border-radius: 30px;
+                box-shadow: 0 12px 30px rgba(232, 108, 141, .35);
+            }
+
+            .menu-item img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 12px;
+            }
+
+            .menu-item p {
+                font-size: 17px;
+            }
+        }
+
+
+        /* ---------- แนวนอนความสูงน้อย (Landscape/จอเตี้ย) ---------- */
+        @media (orientation: landscape) and (max-height: 420px) {
+            .title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .menu-container {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+            }
+
+            .menu-item {
+                width: 130px;
+                height: 130px;
+                padding: 14px 10px;
+                border-radius: 18px;
+                box-shadow: 0 6px 16px rgba(232, 108, 141, .28);
+            }
+
+            .menu-item img {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 6px;
+            }
+
+            .menu-item p {
+                font-size: 12px;
+                line-height: 1.3;
+            }
+        }
+
+        /* ---------- ผู้ใช้ลด Motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .menu-item {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <p class="title">เลือกเมนู</p>
+
+        <div class="menu-container">
+            <a href="love-days.html" class="menu-item">
+                <img src="img/8.png" alt="เชอร์รี่">
+                <p>เราคบกันมานาน<br>เท่าไหร่แล้วนะ</p>
+            </a>
+
+            <a href="letter.html" class="menu-item">
+                <img src="img/7.png" alt="กระต่าย">
+                <p>จดหมาย<br>ถึงคนน่ารัก</p>
+            </a>
+
+            <a href="game.html" class="menu-item">
+                <img src="img/9.png" alt="คัพเค้ก">
+                <p>เรารู้ใจกัน<br>มากแค่ไหน</p>
+            </a>
+
+            <a href="memory.html" class="menu-item">
+                <img src="img/10.png" alt="กล้อง">
+                <p>ความทรงจำ</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>

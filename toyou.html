@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จดหมายถึงคนน่ารัก</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .letter-card {
+            background: #fff;
+            border-radius: 25px;
+            padding: 50px 40px 40px;
+            width: min(90%, 700px);
+            border: 2px solid #E86C8D;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            color: #5C3A42;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #5C3A42;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 35px;
+            white-space: pre-line;
+        }
+
+        .close-btn {
+            background: #E86C8D;
+            color: #fff;
+            font-size: 18px;
+            padding: 10px 36px;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 6px 18px rgba(232, 108, 141, 0.3);
+        }
+
+        .close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 108, 141, 0.4);
+        }
+
+
+
+
+        /* กันติ่งขอบจอ + ระยะปลอดภัย */
+        @supports (padding: max(0px)) {
+            body {
+                min-height: 100dvh;
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+                padding-top: max(24px, env(safe-area-inset-top));
+                padding-bottom: max(24px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ---------- โทรศัพท์เล็กมาก (≤ 360px) ---------- */
+        @media (max-width: 360px) {
+            .letter-card {
+                padding: 26px 18px 24px;
+                border-radius: 20px;
+                width: 94%;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, .1);
+            }
+
+            h2 {
+                font-size: 20px;
+                margin-bottom: 14px;
+            }
+
+            p {
+                font-size: 15px;
+                line-height: 1.65;
+                margin-bottom: 24px;
+            }
+
+            .close-btn {
+                font-size: 15px;
+                padding: 8px 20px;
+                box-shadow: 0 6px 14px rgba(232, 108, 141, .28);
+            }
+        }
+
+        /* ---------- โทรศัพท์ทั่วไป (361–480px) ---------- */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .letter-card {
+                padding: 32px 24px 28px;
+                border-radius: 22px;
+                width: 92%;
+            }
+
+            h2 {
+                font-size: 22px;
+                margin-bottom: 16px;
+            }
+
+            p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .close-btn {
+                font-size: 16px;
+                padding: 9px 26px;
+            }
+        }
+
+        /* ---------- มือถือจอใหญ่ / Phablet (481–599px) ---------- */
+        @media (min-width: 481px) and (max-width: 599px) {
+            .letter-card {
+                padding: 36px 32px 30px;
+                border-radius: 24px;
+                width: 88%;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 17px;
+            }
+
+            .close-btn {
+                font-size: 17px;
+                padding: 10px 30px;
+            }
+        }
+
+        /* ---------- iPad / Tablet (600–1024px) ---------- */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .letter-card {
+                padding: 44px 36px 34px;
+                border-radius: 25px;
+                width: min(80%, 700px);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            .close-btn {
+                font-size: 18px;
+                padding: 10px 32px;
+            }
+        }
+
+        /* ---------- แนวนอนความสูงน้อย (Landscape/จอเตี้ย) ---------- */
+        @media (orientation: landscape) and (max-height: 420px) {
+            body {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .letter-card {
+                width: 86%;
+                padding: 22px 18px;
+                border-radius: 18px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            p {
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+
+            .close-btn {
+                font-size: 14px;
+                padding: 8px 18px;
+            }
+        }
+
+        /* ---------- ผู้ใช้ลด Motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .close-btn {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="letter-card">
+        <h2>Happy Anniversary</h2>
+        <p>
+            ครบรอบ 1 ปีของเราแล้วนะ
+            ขอบคุณที่อยู่ข้างกันเสมอทั้งวันที่ดีและวันที่ยาก
+            ขอบคุณที่เข้ามาเติมเต็มชีวิตของเราให้มีความสุขขึ้นทุกวัน
+            รักเธอมากนะ
+        </p>
+
+        <!-- ปุ่มกลับไปหน้าเมนู -->
+        <button class="close-btn" onclick="window.location.href='menu.html'">ปิด</button>
+    </div>
+</body>
+
+</html>

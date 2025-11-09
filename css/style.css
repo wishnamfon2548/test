@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-family: 'mali';
+    background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 16px;
+    padding: 24px;
+}
+
+body>img {
+    width: min(380px, 72vw);
+    height: auto;
+    filter: drop-shadow(0 18px 32px rgba(0, 0, 0, .08));
+    margin-bottom: 20px;
+}
+
+body>p {
+    color: #5C3A42;
+    font-size: clamp(18px, 2.6vw, 28px);
+    letter-spacing: .5px;
+}
+
+body>a {
+    display: inline-block;
+    margin-top: 4px;
+    background: #E86C8D;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: large;
+    padding: 12px 26px;
+    border-radius: 999px;
+    box-shadow: 0 10px 24px rgba(232, 108, 141, .35);
+    transition: transform .06s ease, filter .15s ease, box-shadow .15s ease;
+}
+
+body>a:hover {
+    filter: brightness(.96);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(232, 108, 141, .42);
+}
+
+body>a:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(232, 108, 141, .28);
+}
+
+
+
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(24px, env(safe-area-inset-left));
+        padding-right: max(24px, env(safe-area-inset-right));
+        padding-top: max(24px, env(safe-area-inset-top));
+        padding-bottom: max(24px, env(safe-area-inset-bottom));
+    }
+}
+
+/* ---------- โทรศัพท์เล็กมาก (≤ 360px) ---------- */
+@media (max-width: 360px) {
+    body {
+        gap: 10px;
+    }
+
+    body>img {
+        width: min(78vw, 300px);
+        filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .10));
+        margin-bottom: 12px;
+    }
+
+    body>p {
+        font-size: clamp(16px, 4.6vw, 18px);
+        line-height: 1.55;
+        letter-spacing: .3px;
+    }
+
+    body>a {
+        font-size: 15px;
+        padding: 10px 20px;
+        box-shadow: 0 8px 18px rgba(232, 108, 141, .32);
+    }
+}
+
+/* ---------- โทรศัพท์ทั่วไป (361–480px) ---------- */
+@media (min-width: 361px) and (max-width: 480px) {
+    body {
+        gap: 12px;
+    }
+
+    body>img {
+        width: min(82vw, 340px);
+        margin-bottom: 14px;
+    }
+
+    body>p {
+        font-size: clamp(17px, 4vw, 20px);
+        line-height: 1.6;
+    }
+
+    body>a {
+        font-size: 16px;
+        padding: 11px 22px;
+    }
+}
+
+/* ---------- มือถือจอใหญ่ / Phablet (481–599px) ---------- */
+@media (min-width: 481px) and (max-width: 599px) {
+    body>img {
+        width: min(70vw, 380px);
+    }
+
+    body>p {
+        font-size: clamp(18px, 3.2vw, 22px);
+    }
+
+    body>a {
+        font-size: 17px;
+        padding: 12px 24px;
+    }
+}
+
+/* ---------- iPad / Tablet (600–1024px) ---------- */
+@media (min-width: 600px) and (max-width: 1024px) {
+    body {
+        gap: 16px;
+        padding: 32px;
+    }
+
+    body>img {
+        /* ใหญ่ขึ้นพอดีสายตา แต่ยังไม่เต็มจอ */
+        width: min(56vw, 520px);
+        filter: drop-shadow(0 18px 32px rgba(0, 0, 0, .10));
+        margin-bottom: 18px;
+    }
+
+    body>p {
+        font-size: clamp(20px, 2.2vw, 26px);
+        line-height: 1.6;
+    }
+
+    body>a {
+        font-size: 18px;
+        padding: 13px 28px;
+        box-shadow: 0 12px 26px rgba(232, 108, 141, .35);
+    }
+}
+
+/* ---------- แนวนอนความสูงน้อย (Landscape/จอเตี้ย) ---------- */
+@media (orientation: landscape) and (max-height: 420px) {
+    body {
+        gap: 8px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+
+    body>img {
+        width: min(40vh, 260px);
+        /* อิงความสูงเพื่อไม่ให้เกินจอ */
+        margin-bottom: 8px;
+    }
+
+    body>p {
+        font-size: clamp(14px, 2.2vh, 18px);
+    }
+
+    body>a {
+        font-size: clamp(13px, 2.0vh, 16px);
+        padding: 8px 18px;
+    }
+}
+
+/* ---------- ผู้ใช้ลด Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    body>a {
+        transition: none;
+    }
+}

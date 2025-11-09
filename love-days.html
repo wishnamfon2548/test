@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เราคบกันมานานเท่าไหร่แล้วนะ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Mali&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Mali', cursive;
+            background: linear-gradient(to right, #FDC7D7, #FFFFFF, #FDC7D7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 25px;
+            padding: 40px 60px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #E86C8D;
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h2 {
+            color: #5C3A42;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .days {
+            font-size: 48px;
+            color: #5C3A42;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .small {
+            font-size: 18px;
+            color: #5C3A42;
+            margin-bottom: 18px;
+        }
+
+        .photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
+            object-fit: cover;
+            margin-bottom: 28px;
+            border: 2px solid #E86C8D;
+        }
+
+        .time-boxes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .box {
+            background: #E86C8D;
+            color: white;
+            border-radius: 15px;
+            padding: 16px 26px;
+            font-size: 22px;
+            box-shadow: 0 6px 18px rgba(232, 108, 141, 0.3);
+            min-width: 90px;
+        }
+
+        .box small {
+            display: block;
+            font-size: 14px;
+            margin-top: 3px;
+            opacity: 0.9;
+        }
+
+        .back-btn {
+            margin-top: 32px;
+            display: inline-block;
+            background: #E86C8D;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 30px;
+            border-radius: 999px;
+            font-size: 18px;
+            transition: 0.2s;
+            box-shadow: 0 6px 18px rgba(232, 108, 141, 0.35);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(232, 108, 141, 0.45);
+        }
+
+
+
+
+        /* =========================
+   Responsive Add-on (append only)
+   ใช้ breakpoints เดียวกับทุกหน้า
+   ========================= */
+
+        /* กันติ่งขอบจอ + ระยะปลอดภัย */
+        @supports (padding: max(0px)) {
+            body {
+                min-height: 100dvh;
+                padding-left: max(24px, env(safe-area-inset-left));
+                padding-right: max(24px, env(safe-area-inset-right));
+                padding-top: max(24px, env(safe-area-inset-top));
+                padding-bottom: max(24px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* ---------- โทรศัพท์เล็กมาก (≤ 360px) ---------- */
+        @media (max-width: 360px) {
+            .card {
+                width: min(94vw, 520px);
+                padding: 24px 18px;
+                border-radius: 20px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-bottom: 8px;
+            }
+
+            .days {
+                font-size: 34px;
+                margin-bottom: 4px;
+            }
+
+            .small {
+                font-size: 14px;
+                margin-bottom: 14px;
+            }
+
+            .photo {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 18px;
+                border-radius: 10px;
+            }
+
+            .time-boxes {
+                gap: 8px;
+            }
+
+            .box {
+                min-width: 72px;
+                padding: 10px 14px;
+                font-size: 16px;
+                border-radius: 12px;
+                box-shadow: 0 6px 14px rgba(232, 108, 141, .28);
+            }
+
+            .box small {
+                font-size: 12px;
+            }
+
+            .back-btn {
+                margin-top: 18px;
+                font-size: 16px;
+                padding: 9px 22px;
+                box-shadow: 0 6px 16px rgba(232, 108, 141, .30);
+            }
+        }
+
+        /* ---------- โทรศัพท์ทั่วไป (361–480px) ---------- */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .card {
+                width: min(92vw, 560px);
+                padding: 28px 22px;
+                border-radius: 22px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            .days {
+                font-size: 40px;
+            }
+
+            .small {
+                font-size: 16px;
+                margin-bottom: 16px;
+            }
+
+            .photo {
+                width: 140px;
+                height: 140px;
+                margin-bottom: 22px;
+            }
+
+            .time-boxes {
+                gap: 10px;
+            }
+
+            .box {
+                min-width: 80px;
+                padding: 12px 18px;
+                font-size: 18px;
+            }
+
+            .back-btn {
+                margin-top: 22px;
+                font-size: 17px;
+                padding: 10px 26px;
+            }
+        }
+
+        /* ---------- มือถือจอใหญ่ / Phablet (481–599px) ---------- */
+        @media (min-width: 481px) and (max-width: 599px) {
+            .card {
+                width: min(88vw, 600px);
+                padding: 32px 28px;
+                border-radius: 24px;
+            }
+
+            h2 {
+                font-size: 22px;
+            }
+
+            .days {
+                font-size: 44px;
+            }
+
+            .photo {
+                width: 160px;
+                height: 160px;
+            }
+
+            .time-boxes {
+                gap: 12px;
+            }
+
+            .box {
+                min-width: 86px;
+                padding: 14px 22px;
+                font-size: 20px;
+            }
+
+            .back-btn {
+                margin-top: 26px;
+                font-size: 18px;
+                padding: 10px 30px;
+            }
+        }
+
+        /* ---------- iPad / Tablet (600–1024px) ---------- */
+        @media (min-width: 600px) and (max-width: 1024px) {
+            .card {
+                width: min(76vw, 680px);
+                padding: 36px 40px;
+                border-radius: 25px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, .12);
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            .days {
+                font-size: 50px;
+            }
+
+            .small {
+                font-size: 18px;
+            }
+
+            .photo {
+                width: 170px;
+                height: 170px;
+                margin-bottom: 24px;
+            }
+
+            .time-boxes {
+                gap: 14px;
+            }
+
+            .box {
+                min-width: 96px;
+                padding: 16px 24px;
+                font-size: 22px;
+            }
+
+            .back-btn {
+                margin-top: 30px;
+                font-size: 18px;
+                padding: 11px 34px;
+            }
+        }
+
+        /* ---------- แนวนอนความสูงน้อย (Landscape/จอเตี้ย) ---------- */
+        @media (orientation: landscape) and (max-height: 420px) {
+            body {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+
+            .card {
+                width: min(86vw, 640px);
+                padding: 20px 18px;
+                border-radius: 18px;
+            }
+
+            h2 {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .days {
+                font-size: 32px;
+                margin-bottom: 2px;
+            }
+
+            .small {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
+
+            .photo {
+                width: 110px;
+                height: 110px;
+                margin-bottom: 14px;
+            }
+
+            .time-boxes {
+                gap: 8px;
+            }
+
+            .box {
+                min-width: 70px;
+                padding: 10px 12px;
+                font-size: 16px;
+            }
+
+            .back-btn {
+                margin-top: 14px;
+                font-size: 14px;
+                padding: 8px 18px;
+            }
+        }
+
+        /* ---------- ผู้ใช้ลด Motion ---------- */
+        @media (prefers-reduced-motion: reduce) {
+            .back-btn {
+                transition: none !important;
+            }
+        }
+
+        /* โทรศัพท์เล็กมาก (≤ 360px) ให้กล่องเรียงบรรทัดเดียว */
+        @media (max-width: 360px) {
+            .time-boxes {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px;
+            }
+
+            .box {
+                min-width: unset;
+                padding: 10px 0;
+                font-size: 16px;
+            }
+        }
+
+        /* โทรศัพท์ทั่วไป (361–480px) ให้กล่องเรียงบรรทัดเดียว */
+        @media (min-width: 361px) and (max-width: 480px) {
+            .time-boxes {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+            }
+
+            .box {
+                min-width: unset;
+                padding: 12px 0;
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>ตั้งแต่วันแรกที่คบกัน</h2>
+        <div class="days" id="daysCount">0</div>
+        <div class="small">วัน</div>
+
+        <img src="img/p2.jpg" alt="คู่ของเรา" class="photo">
+
+        <div class="time-boxes">
+            <div class="box"><span id="days">0</span><small>วัน</small></div>
+            <div class="box"><span id="hours">0</span><small>ชั่วโมง</small></div>
+            <div class="box"><span id="minutes">0</span><small>นาที</small></div>
+            <div class="box"><span id="seconds">0</span><small>วินาที</small></div>
+        </div>
+    </div>
+    <a href="menu.html" class="back-btn">ย้อนกลับ</a>
+
+    <script>
+        // === ตั้งค่าวันที่เริ่มคบกัน ===
+        const startDate = new Date("2025-05-04T20:00:00"); // เปลี่ยนวันที่นี้ได้เลย
+        const daysCountEl = document.getElementById("daysCount");
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minutesEl = document.getElementById("minutes");
+        const secondsEl = document.getElementById("seconds");
+
+        function updateLoveTime() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            daysCountEl.textContent = days;
+            daysEl.textContent = days;
+            hoursEl.textContent = hours;
+            minutesEl.textContent = minutes;
+            secondsEl.textContent = seconds;
+        }
+
+        updateLoveTime();
+        setInterval(updateLoveTime, 1000);
+    </script>
+</body>
+
+</html>
